@@ -1,7 +1,9 @@
 package com.ddd_bootcamp.domain
 
+import org.assertj.core.api.Assertions.`as`
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.Test
+import java.math.BigInteger
 
 internal class CartTest {
     @Test
@@ -39,6 +41,7 @@ internal class CartTest {
         assertThat(actual[0].quantity).isEqualTo(2)
         assertThat(actual[0].product.name).isEqualTo("Some test product")
     }
+
     @Test
     fun shouldRemoveNamedItemFromCart() {
         val cart = Cart()
@@ -79,6 +82,15 @@ internal class CartTest {
         assertThat(cart1).isNotSameAs(cart2)
         assertThat(cart1).isNotEqualTo(cart2)
         assertThat(cart1).isEqualTo(cart1)
+    }
+
+    @Test
+    fun productIncludesPrice() {
+        val price = Price(100)
+        val product = Product("Some test product", price)
+
+        assertThat(product.price).isEqualTo(price)
+        assertThat(product.price?.amount).isEqualTo(Amount(BigInteger.valueOf(100)))
     }
 
 }

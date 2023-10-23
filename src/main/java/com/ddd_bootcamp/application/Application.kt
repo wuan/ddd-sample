@@ -16,7 +16,6 @@ fun main(args: Array<String>) {
 
     cart.remove(sonies)
 
-
     println("----------------------------------------")
     println("products = $products")
     println("----------------------------------------")
