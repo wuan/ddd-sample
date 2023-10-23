@@ -1,6 +1,7 @@
 plugins {
     id 'java'
     id "application"
+    id 'org.jetbrains.kotlin.jvm' version '1.9.10'
 }
 ext {
     javaMainClass = "com.ddd_bootcamp.application.Application"
@@ -20,8 +21,12 @@ repositories {
 dependencies {
     testImplementation 'org.junit.jupiter:junit-jupiter-api:5.8.1'
     testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.8.1'
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk8"
 }
 
 test {
     useJUnitPlatform()
+}
+kotlin {
+    jvmToolchain(17)
 }

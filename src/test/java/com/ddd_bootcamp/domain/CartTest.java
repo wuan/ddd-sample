@@ -17,7 +17,7 @@ class CartTest {
         List<Product> actual = cart.getProducts();
 
         assertEquals(1, actual.size());
-        assertEquals("Some test product", actual.get(0).getName());
+        assertEquals("Some test product", actual.get(0).name);
 
     }
 }
