@@ -15,4 +15,9 @@ class Cart {
                 "products=" + products +
                 '}'
     }
+
+    fun remove(item: Product) {
+        val old = products.find { it.product.name == item.name }
+        products.remove(old)
+    }
 }

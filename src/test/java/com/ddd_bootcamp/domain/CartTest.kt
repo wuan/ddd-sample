@@ -39,4 +39,17 @@ internal class CartTest {
         assertThat(actual[0].quantity).isEqualTo(2)
         assertThat(actual[0].product.name).isEqualTo("Some test product")
     }
+    @Test
+    fun shouldRemoveNamedItemFromCart() {
+        val cart = Cart()
+        val product = Product("Some test product")
+        val sony = Product("Sony Wireless Headphone")
+        cart.add(product)
+        cart.add(sony)
+
+        cart.remove(sony)
+
+        assertThat(cart.getItems()).hasSize(1)
+        assertThat(cart.getItems()[0].product).isEqualTo(Product("Some test product"))
+    }
 }
