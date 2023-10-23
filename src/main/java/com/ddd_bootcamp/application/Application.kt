@@ -8,7 +8,7 @@ fun main(args: Array<String>) {
     val product = Product("Apple Pencil")
     cart.add(product)
     println("Cart = $cart")
-    val products = cart.products
+    val products = cart.getProducts()
     println("----------------------------------------")
     println("products = $products")
     println("----------------------------------------")
