@@ -47,4 +47,8 @@ class Cart(
     override fun hashCode(): Int {
         return id.hashCode()
     }
+
+    fun discountedPrice(product: Product, prizeOf: Price?): Price {
+        TODO("Calculate discount")
+    }
 }

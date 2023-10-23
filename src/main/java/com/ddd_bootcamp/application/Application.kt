@@ -18,8 +18,13 @@ fun main(args: Array<String>) {
 
     println("----------------------------------------")
     println("products = $products")
+    val competitor = Competitor(listOf(Product("Bagle")))
+    products.forEach {
+        println("${it.product.name} ${it.product.price} ${competitor.prizeOf(it.product.name)} ${cart.discountedPrice(it.product, competitor.prizeOf(it.product.name))}")
+    }
     println("----------------------------------------")
     removedItems.get().forEach {
         println("Removed item = ${it}")
     }
 }
+

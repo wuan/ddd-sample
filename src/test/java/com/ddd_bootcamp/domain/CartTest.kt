@@ -1,6 +1,5 @@
 package com.ddd_bootcamp.domain
 
-import org.assertj.core.api.Assertions.`as`
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.Test
 import java.math.BigInteger
@@ -14,7 +13,7 @@ internal class CartTest {
         val actual = cart.getItems()
 
         assertThat(actual).hasSize(1)
-        assertThat(actual[0].product.name).isEqualTo("Some test product")
+        assertThat(actual[0].product.name.value).isEqualTo("Some test product")
     }
 
     @Test
@@ -27,7 +26,7 @@ internal class CartTest {
         val actual = cart.getItems()
 
         assertThat(actual).hasSize(2)
-        assertThat(actual).extracting("product.name").contains("Some test product", "Sony Wireless Headphone")
+        assertThat(actual).extracting("product.name.value").contains("Some test product", "Sony Wireless Headphone")
     }
 
     @Test
@@ -39,7 +38,7 @@ internal class CartTest {
 
         assertThat(actual).hasSize(1)
         assertThat(actual[0].quantity).isEqualTo(2)
-        assertThat(actual[0].product.name).isEqualTo("Some test product")
+        assertThat(actual[0].product.name).isEqualTo(ProductName("Some test product"))
     }
 
     @Test
@@ -74,10 +73,10 @@ internal class CartTest {
     fun shouldHandleMultipleCarts() {
         val cart1 = Cart()
         val cart2 = Cart()
-        val item1 = Item( Product("Sony Wireless headphone"), 1);
-        val item2 = Item( Product("Sony Wireless headphone"), 1);
-        cart1.add(item1);
-        cart2.add(item2);
+        val item1 = Item( Product("Sony Wireless headphone"), 1)
+        val item2 = Item( Product("Sony Wireless headphone"), 1)
+        cart1.add(item1)
+        cart2.add(item2)
 
         assertThat(cart1).isNotSameAs(cart2)
         assertThat(cart1).isNotEqualTo(cart2)
@@ -92,5 +91,4 @@ internal class CartTest {
         assertThat(product.price).isEqualTo(price)
         assertThat(product.price?.amount).isEqualTo(Amount(BigInteger.valueOf(100)))
     }
-
 }
