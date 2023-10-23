@@ -52,4 +52,18 @@ internal class CartTest {
         assertThat(cart.getItems()).hasSize(1)
         assertThat(cart.getItems()[0].product).isEqualTo(Product("Some test product"))
     }
+
+    @Test
+    fun shouldStoreHistoryOfCart() {
+        val removedItems = RemovedItems()
+
+        val cart = Cart(removedItems)
+        val product = Product("Some test product")
+        cart.add(product)
+
+        cart.remove(product)
+
+        val actuallyRemovedItems = removedItems.get()
+        assertThat(actuallyRemovedItems).extracting("product").containsExactly(product)
+    }
 }

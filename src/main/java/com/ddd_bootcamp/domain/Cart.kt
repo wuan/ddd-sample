@@ -1,6 +1,8 @@
 package com.ddd_bootcamp.domain
 
-class Cart {
+class Cart(
+    private val removedItems: RemovedItems = RemovedItems()
+) {
     private val products: MutableList<Item> = mutableListOf()
     fun add(product: Product, quantity: Int = 1) {
         products.add(Item(product, quantity))
@@ -18,6 +20,9 @@ class Cart {
 
     fun remove(item: Product) {
         val old = products.find { it.product.name == item.name }
-        products.remove(old)
+        if (old != null) {
+            removedItems.add(old)
+            products.remove(old)
+        }
     }
 }
