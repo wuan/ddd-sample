@@ -66,4 +66,19 @@ internal class CartTest {
         val actuallyRemovedItems = removedItems.get()
         assertThat(actuallyRemovedItems).extracting("product").containsExactly(product)
     }
+
+    @Test
+    fun shouldHandleMultipleCarts() {
+        val cart1 = Cart()
+        val cart2 = Cart()
+        val item1 = Item( Product("Sony Wireless headphone"), 1);
+        val item2 = Item( Product("Sony Wireless headphone"), 1);
+        cart1.add(item1);
+        cart2.add(item2);
+
+        assertThat(cart1).isNotSameAs(cart2)
+        assertThat(cart1).isNotEqualTo(cart2)
+        assertThat(cart1).isEqualTo(cart1)
+    }
+
 }
