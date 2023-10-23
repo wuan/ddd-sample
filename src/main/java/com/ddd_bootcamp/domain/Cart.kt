@@ -2,12 +2,8 @@ package com.ddd_bootcamp.domain
 
 class Cart {
     private val products: MutableList<CartItem> = mutableListOf()
-    fun add(product: Product) {
-        products.add(CartItem(product, 1))
-    }
-
-    fun add(product: CartItem) {
-        products.add(product)
+    fun add(product: Product, quantity: Int = 1) {
+        products.add(CartItem(product, quantity))
     }
 
     fun getItems(): List<CartItem> {

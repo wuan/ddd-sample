@@ -32,8 +32,7 @@ internal class CartTest {
     fun shouldAddProductWithQuantity() {
         val cart = Cart()
         val product = Product("Some test product")
-        val item = CartItem(product, 2)
-        cart.add(item)
+        cart.add(product, 2)
         val actual = cart.getItems()
 
         assertThat(actual).hasSize(1)
