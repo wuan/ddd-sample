@@ -13,4 +13,24 @@ class PriceCalculatorShould {
 
         assertThat(calculator.discountedPrice(product)).isNull()
     }
+
+    @Test
+    fun `return null if competitor has product and it is more expensive than 10 percent`() {
+        val products = listOf<Product>(Product("Bagle", Price(111)))
+        val calculator = PriceCalculator(Competitor(products))
+        val product = Product("Bagle", Price(100))
+
+        assertThat(calculator.discountedPrice(product)).isNull()
+
+    }
+
+    @Test
+    fun `return null if competitor has product and it is 10 percent `() {
+        val products = listOf<Product>(Product("Bagle", Price(110)))
+        val calculator = PriceCalculator(Competitor(products))
+        val product = Product("Bagle", Price(100))
+
+        assertThat(calculator.discountedPrice(product)).isEqualTo(Price(99))
+
+    }
 }

@@ -1,18 +1,20 @@
 package com.ddd_bootcamp.domain
 
+import com.ddd_bootcamp.application.PriceCalculator
 import java.util.*
 
 class Cart(
     private val removedItems: RemovedItems = RemovedItems(),
+    private val priceCalculator: PriceCalculator = PriceCalculator(),
 ) {
     private val id: UUID = UUID.randomUUID()
     private val products: MutableList<Item> = mutableListOf()
     fun add(product: Product, quantity: Int = 1) {
-        products.add(Item(product, quantity))
+        add(Item(product, quantity))
     }
 
     fun add(item: Item) {
-        products.add(item)
+        products.add(item.copy(discountedPrice = priceCalculator.discountedPrice(item.product)))
     }
 
     fun getItems(): List<Item> {
