@@ -91,32 +91,4 @@ internal class CartTest {
         assertThat(product.price).isEqualTo(price)
         assertThat(product.price.amount).isEqualTo(Amount(BigInteger.valueOf(100)))
     }
-
-    @Test
-    fun `should not give discount when other prize is null`() {
-        val product = Product("Bagle", Price(100))
-        val cart = Cart()
-        cart.add(Item(product, 1))
-
-        assertThat(cart.discountedPrice(product, null)).isNull()
-    }
-
-
-    @Test
-    fun `should not give discount when other prize is 10 percent higher`() {
-        val product = Product("Bagle", Price(100))
-        val cart = Cart()
-        cart.add(Item(product, 1))
-
-        assertThat(cart.discountedPrice(product, Price(110))).isNull()
-    }
-
-    @Test
-    fun `should not give discount when other prize is more than 10 percent higher`() {
-        val product = Product("Bagle", Price(100))
-        val cart = Cart()
-        cart.add(Item(product, 1))
-
-        assertThat(cart.discountedPrice(product, Price(110))).isNull()
-    }
 }

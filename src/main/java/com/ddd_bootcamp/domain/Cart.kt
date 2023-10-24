@@ -1,12 +1,9 @@
 package com.ddd_bootcamp.domain
 
-import com.ddd_bootcamp.application.Competitor
-import java.math.BigInteger
 import java.util.*
 
 class Cart(
-        private val removedItems: RemovedItems = RemovedItems(),
-        private val competitor: Competitor = Competitor(listOf())
+    private val removedItems: RemovedItems = RemovedItems(),
 ) {
     private val id: UUID = UUID.randomUUID()
     private val products: MutableList<Item> = mutableListOf()
@@ -49,16 +46,5 @@ class Cart(
 
     override fun hashCode(): Int {
         return id.hashCode()
-    }
-
-    fun discountedPrice(product: Product, prizeOf: Price?): Price? {
-        if (prizeOf == null) {
-            return null
-        }
-
-        val discounted = Price((prizeOf.amount.value.toLong() * 0.9).toInt())
-        if (discounted < product.price) { return product.price }
-
-        return null
     }
 }

@@ -7,8 +7,9 @@ import com.ddd_bootcamp.domain.RemovedItems
 
 fun main(args: Array<String>) {
     val removedItems = RemovedItems()
-    val competitor = Competitor(listOf(Product("Bagle", Price(10)), Product("Apple Pencil", Price(200))))
-    val cart = Cart(removedItems, competitor)
+    val priceCalculator = PriceCalculator(Competitor(listOf(Product("Bagle", Price(10)), Product("Apple Pencil", Price(200)))))
+
+    val cart = Cart(removedItems)
     val pencil = Product("Apple Pencil", Price(200))
     cart.add(pencil)
     val sonies = Product("Sony Wireless Headphone", Price(350))
@@ -21,7 +22,7 @@ fun main(args: Array<String>) {
     println("----------------------------------------")
     println("products = $products")
     products.forEach {
-        println("${it.product.name} ${it.product.price} ${cart.discountedPrice(it.product, competitor.prizeOf(it.product.name))}")
+        println("${it.product.name} ${it.product.price} ${it.discountedPrice}")
     }
     println("----------------------------------------")
     removedItems.get().forEach {
