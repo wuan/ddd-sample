@@ -11,15 +11,23 @@ class Customer(
     var address: Address = address
         private set
 
-    fun updateAddress(address: Address) {
+    internal fun updateAddress(address: Address) {
         this.address = address
+        accounts.forEach { it.updateAddress(address) }
     }
 }
 
-data class Account(
+class Account(
     private val id: UUID = UUID.randomUUID(),
-    val address: Address
-)
+    address: Address
+) {
+    var address: Address = address
+        private set
+
+    internal fun updateAddress(address: Address) {
+        this.address = address
+    }
+}
 
 data class Address(
     val city: City

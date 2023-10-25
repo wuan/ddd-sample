@@ -22,4 +22,15 @@ class CustomerShould {
 
         assertThat(customer.address).isEqualTo(newAddress)
     }
+
+    @Test
+    fun haveUpdateableAddressInAccounts() {
+        val address = Address(City("London"))
+        val customer = Customer(accounts = listOf(Account(address = address)), address = address)
+        val newAddress = Address(City("Paris"))
+
+        customer.updateAddress(newAddress)
+
+        assertThat(customer.accounts.first().address).isEqualTo(newAddress)
+    }
 }
