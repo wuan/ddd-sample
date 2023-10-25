@@ -20,11 +20,18 @@ class PriceShould {
 
     @Test
     fun adhereEqualContract() {
-        TODO("Not yet implemented")
+        val price = Price(42, "EUR")
+
+        assertThat(price).isEqualTo(Price(42, "EUR"))
+        assertThat(price).isNotEqualTo(Price(43, "EUR"))
     }
 
     @Test
     fun beComparable() {
-        TODO("Not yet implemented")
+        val price = Price(42, "EUR")
+
+        assertThat(price.compareTo(Price(43, "EUR"))).isEqualTo(-1)
+        assertThat(price.compareTo(Price(42, "EUR"))).isEqualTo(0)
+        assertThat(price.compareTo(Price(41, "EUR"))).isEqualTo(1)
     }
 }
