@@ -17,4 +17,14 @@ class PriceShould {
 
         assertThat(price.currency).isExactlyInstanceOf(String::class.java)
     }
+
+    @Test
+    fun adhereEqualContract() {
+        TODO("Not yet implemented")
+    }
+
+    @Test
+    fun beComparable() {
+        TODO("Not yet implemented")
+    }
 }
