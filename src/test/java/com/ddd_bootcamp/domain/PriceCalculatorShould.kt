@@ -19,7 +19,6 @@ class PriceCalculatorShould {
         val product = Product("Bagle", Price(100))
 
         assertThat(calculator.discountedPrice(product)).isNull()
-
     }
 
     @Test

@@ -13,4 +13,7 @@ data class Amount(
         )
     }
 
+    fun reducedByPercentage(percentage: Double): Amount {
+        return this * (1 - percentage / 100.0)
+    }
 }

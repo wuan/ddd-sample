@@ -12,4 +12,13 @@ class AmountShould {
 
         assertThat(amount.value).isExactlyInstanceOf(BigInteger::class.java)
     }
+
+    @Test
+    fun returnsReducedPrice() {
+        val amount = Amount(BigInteger.valueOf(42))
+
+        val result = amount.reducedByPercentage(10.0)
+
+        assertThat(result.value).isEqualTo(BigInteger.valueOf(38));
+    }
 }
