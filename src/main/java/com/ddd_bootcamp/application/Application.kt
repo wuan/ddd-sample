@@ -1,9 +1,6 @@
 package com.ddd_bootcamp.application
 
-import com.ddd_bootcamp.domain.Cart
-import com.ddd_bootcamp.domain.Price
-import com.ddd_bootcamp.domain.Product
-import com.ddd_bootcamp.domain.RemovedItems
+import com.ddd_bootcamp.domain.*
 
 fun main(args: Array<String>) {
     val removedItems = RemovedItems()

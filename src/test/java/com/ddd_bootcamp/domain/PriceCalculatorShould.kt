@@ -1,7 +1,5 @@
 package com.ddd_bootcamp.domain
 
-import com.ddd_bootcamp.application.Competitor
-import com.ddd_bootcamp.application.PriceCalculator
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.Test
 

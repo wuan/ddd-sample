@@ -1,6 +1,5 @@
 package com.ddd_bootcamp.domain
 
-import com.ddd_bootcamp.application.PriceCalculator
 import java.util.*
 
 class Cart(
@@ -9,6 +8,7 @@ class Cart(
 ) {
     private val id: UUID = UUID.randomUUID()
     private val products: MutableList<Item> = mutableListOf()
+
     fun add(product: Product, quantity: Int = 1) {
         add(Item(product, quantity))
     }

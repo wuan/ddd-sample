@@ -1,8 +1,4 @@
-package com.ddd_bootcamp.application
-
-import com.ddd_bootcamp.domain.Price
-import com.ddd_bootcamp.domain.Product
-import com.ddd_bootcamp.domain.ProductName
+package com.ddd_bootcamp.domain
 
 class Competitor(private val listOf: List<Product>) {
 
