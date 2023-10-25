@@ -11,4 +11,5 @@ data class Price(
     }
 
     constructor(value: Int) : this(Amount(BigInteger.valueOf(value.toLong())), "USD")
+    constructor(value: Int, currency: String) : this(Amount(BigInteger.valueOf(value.toLong())), currency)
 }
