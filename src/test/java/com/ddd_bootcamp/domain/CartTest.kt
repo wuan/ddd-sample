@@ -73,8 +73,8 @@ internal class CartTest {
     fun shouldHandleMultipleCarts() {
         val cart1 = Cart()
         val cart2 = Cart()
-        val item1 = Item( Product("Sony Wireless headphone", Price(350)), 1)
-        val item2 = Item( Product("Sony Wireless headphone", Price(350)), 1)
+        val item1 = Item(Product("Sony Wireless headphone", Price(350)), 1)
+        val item2 = Item(Product("Sony Wireless headphone", Price(350)), 1)
         cart1.add(item1)
         cart2.add(item2)
 
@@ -90,5 +90,22 @@ internal class CartTest {
 
         assertThat(product.price).isEqualTo(price)
         assertThat(product.price.amount).isEqualTo(Amount(BigInteger.valueOf(100)))
+    }
+
+    @Test
+    fun checkoutShouldCreateAnOrder() {
+        val cart = Cart()
+        val item1 = Item(Product("Sony Wireless headphone", Price(350)), 2)
+        val item2 = Item(Product("Apple iPencil", Price(200)), 1)
+        cart.add(item1)
+        cart.add(item2)
+
+        val order = cart.checkout()
+        assertThat(order).isNotNull
+        assertThat(order.items).extracting("name.value").containsExactlyInAnyOrder(
+            "Sony Wireless headphone",
+            "Sony Wireless headphone",
+            "Apple iPencil"
+        )
     }
 }
