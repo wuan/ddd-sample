@@ -108,4 +108,26 @@ internal class CartTest {
             "Apple iPencil"
         )
     }
+
+    @Test
+    fun checkoutShouldAddWeightRelatedShippingCost() {
+        val cart = Cart()
+        val item = Item(Product("Apple iPencil", Price(200), Weight(150)), 1)
+        cart.add(item)
+
+        val order = cart.checkout()
+        assertThat(order.totalPrice).isEqualTo(Amount(BigInteger.valueOf(215)))
+    }
+
+    @Test
+    fun checkoutShouldUseDiscountedPrice() {
+        val priceCalculator = PriceCalculator(Competitor(listOf(Product("Apple iPencil", Price(150)))))
+        val cart = Cart(priceCalculator = priceCalculator)
+        val product = Product("Apple iPencil", Price(200), Weight(0))
+        cart.add(product)
+
+        val order = cart.checkout()
+        assertThat(order.items).extracting("price.amount.value").containsExactly(BigInteger.valueOf(135))
+        assertThat(order.totalPrice).isEqualTo(Amount(BigInteger.valueOf(135)))
+    }
 }

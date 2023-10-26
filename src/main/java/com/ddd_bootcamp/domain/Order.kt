@@ -1,4 +1,4 @@
 package com.ddd_bootcamp.domain
 
-class Order(val items: List<Product>) {
+class Order(val items: List<Product>, val totalPrice: Amount) {
 }

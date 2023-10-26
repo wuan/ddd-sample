@@ -10,4 +10,11 @@ class ProductShould {
 
         assertThat(product.price).isEqualTo(Price(1))
     }
+
+    @Test
+    fun publishItsWeight() {
+        val product = Product("Bagle", Price(1), Weight(10))
+
+        assertThat(product.weight).isEqualTo(Weight(10))
+    }
 }

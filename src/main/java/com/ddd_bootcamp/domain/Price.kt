@@ -10,9 +10,7 @@ data class Price(
         return amount.value.compareTo(price?.amount?.value)
     }
 
-    constructor(value: Int) : this(Amount(BigInteger.valueOf(value.toLong())), "USD")
-
-    constructor(value: Int, currency: String) : this(Amount(BigInteger.valueOf(value.toLong())), currency)
+    constructor(value: Long, currency: String = "USD") : this(Amount(BigInteger.valueOf(value)), currency)
 
     fun reducedByPercentage(percentage: Double): Price {
         return copy(amount=amount.reducedByPercentage(percentage))

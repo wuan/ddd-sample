@@ -51,12 +51,26 @@ class Cart(
     }
 
     fun checkout(): Order {
-        val list = mutableListOf<String>().apply {
-            repeat(2){ this.add(element = "YourObject($it)") }.apply { Product() }
+        var totalDiscount = 0L
 
+        val orderProducts = items.flatMap { item ->
+            MutableList(item.quantity) {
+                val product = item.product
+                if (item.discountedPrice != null) {
+                    totalDiscount += (product.price.amount.value - item.discountedPrice.amount.value).toLong()
+                    product.copy(price = item.discountedPrice)
+                } else product
+            }
         }
-        return Order()
-//        TODO("Not implemented")
-//        return Order(items.stream().flatMap { p -> p.quantity })
+
+        var totalPrice = 0L
+        var totalWeight = 0
+        orderProducts.forEach {
+            totalPrice += it.price.amount.value.toLong()
+            totalWeight += it.weight.weight
+        }
+        totalPrice += Math.round(totalWeight * 0.1)
+
+        return Order(orderProducts, Amount(totalPrice))
     }
 }
